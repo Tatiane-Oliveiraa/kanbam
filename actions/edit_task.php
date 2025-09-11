@@ -41,13 +41,13 @@ $tasks = $stmt->fetch(PDO::FETCH_ASSOC);
   <meta charset="UTF-8">
   <title>Editar Tarefa</title>
   <!-- Importa o CSS para estilizar o formulário -->
-  <link rel="stylesheet" href="./assets/CSS/kanban.css">
+  <link rel="stylesheet" href="../assets/CSS/kanban.css">
 </head>
 <body>
   <h1>Editar Tarefa</h1>
 
   <!-- Formulário de edição da tarefa -->
-  <form class="add-form" method="POST">
+  <form class="edit-form" method="POST" action="update_task.php">
     <!-- Campo de texto para editar o título da tarefa -->
     <input type="text" name="titulo" value="<?= htmlspecialchars($tasks['titulo']) ?>" required>
 

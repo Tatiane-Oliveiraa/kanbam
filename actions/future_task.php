@@ -43,7 +43,9 @@ $tarefasFuturas = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <p><?= nl2br(htmlspecialchars($task['descricao'])) ?></p>
 
               <!-- Link para editar a tarefa futura -->
-              <a href="edit_task.php?id=<?= $task['id'] ?>" class="btn-editar">✏️ Editar</a>
+              <a href="#" 
+                 class="btn-editar"
+                 onclick="openEditModal('<?= $task['id'] ?>','<?= htmlspecialchars($task['titulo'], ENT_QUOTES) ?>','<?= $task['status'] ?>'); return false;">✏️ Editar</a>
               <a href="delete_task.php?id=<?= $task['id'] ?>" class="btn-excluir" onclick="return confirm('Tem certeza que deseja excluir esta tarefa?')">🗑️ Excluir</a>
             </li>
           <?php endforeach; ?>
@@ -56,5 +58,51 @@ $tarefasFuturas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   <!-- Link para voltar à página principal do Kanban -->
   <a href="../index.php">⬅️ Voltar ao Kanban</a>
+
+  <!-- Modal de edição -->
+  <div id="editModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <form id="editForm">
+        <input type="hidden" name="id" id="edit-id">
+        <input type="text" name="titulo" id="edit-titulo" required>
+        <select name="status" id="edit-status">
+          <option value="todo">A Fazer</option>
+          <option value="in-progress">Em Progresso</option>
+          <option value="done">Concluído</option>
+        </select>
+        <button type="submit">Salvar</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+function openEditModal(id, titulo, status) {
+  document.getElementById('edit-id').value = id;
+  document.getElementById('edit-titulo').value = titulo;
+  document.getElementById('edit-status').value = status;
+  document.getElementById('editModal').classList.remove('hidden');
+}
+function closeModal() {
+  document.getElementById('editModal').classList.add('hidden');
+}
+
+document.getElementById('editForm').onsubmit = function(e) {
+  e.preventDefault();
+  fetch('update.php', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      id: document.getElementById('edit-id').value,
+      titulo: document.getElementById('edit-titulo').value,
+      status: document.getElementById('edit-status').value
+    })
+  }).then(res => {
+    if(res.ok) {
+      location.reload();
+    }
+  });
+};
+</script>
 </body>
 </html>

@@ -8,15 +8,19 @@ $data = json_decode(file_get_contents("php://input"), true); // Converte o JSON 
 // Extrai o ID da tarefa e o novo status do array recebido
 $id = $data['id'] ?? null;       // Se o campo 'id' existir, armazena seu valor; senão, define como null
 $status = $data['status'] ?? null; // Se o campo 'status' existir, armazena seu valor; senão, define como null
+$titulo = $data['titulo'] ?? null;
 
 // Verifica se ambos os valores foram recebidos corretamente
-if ($id && $status) {
+if ($id && $status && $titulo) {
   // Prepara a instrução SQL para atualizar o status da tarefa com base no ID
-  $sql = "UPDATE tasks SET status = :status WHERE id = :id";
+  $sql = "UPDATE tasks SET status = :status, titulo = :titulo WHERE id = :id";
   $stmt = $conn->prepare($sql); // Prepara a query para evitar SQL Injection
 
   // Executa a query passando os parâmetros de forma segura
-  $stmt->execute([':status' => $status, ':id' => $id]);
+  $stmt->execute([
+    ':status' => $status, 
+    ':titulo' => $titulo,
+    ':id' => $id]);
 
   // Retorna o código HTTP 200 (OK) indicando sucesso na operação
   http_response_code(200);

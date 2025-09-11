@@ -137,7 +137,7 @@ foreach ($tasks as $task) {
 
             <!-- Ações de editar e excluir -->
             <div class="actions">
-              <a href="actions/edit_task.php?id=<?= $task['id'] ?>">✏️</a>
+              <a href="#" onclick="openEditModal('<?= $task['id'] ?>','<?= htmlspecialchars($task['titulo'], ENT_QUOTES) ?>','<?= $task['status'] ?>'); return false;">✏️</a>
               <a href="actions/delete_task.php?id=<?= $task['id'] ?>" onclick="return confirm('Excluir esta tarefa?')">🗑️</a>
             </div>
           </div>
@@ -148,6 +148,23 @@ foreach ($tasks as $task) {
 
   <!-- Calendário que exibe as tarefas -->
   <div id='calendar'></div>
+
+  <!-- Modal de edição -->
+  <div id="editModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <form id="editForm">
+        <input type="hidden" name="id" id="edit-id">
+        <input type="text" name="titulo" id="edit-titulo" required>
+        <select name="status" id="edit-status">
+          <option value="todo">A Fazer</option>
+          <option value="in-progress">Em Progresso</option>
+          <option value="done">Concluído</option>
+        </select>
+        <button type="submit">Salvar</button>
+      </form>
+    </div>
+  </div>
 
   <script>
     // Inicializa o calendário após o carregamento da página
@@ -167,6 +184,34 @@ foreach ($tasks as $task) {
 
       calendar.render(); // Renderiza o calendário
     });
+
+    function openEditModal(id, titulo, status) {
+      document.getElementById('edit-id').value = id;
+      document.getElementById('edit-titulo').value = titulo;
+      document.getElementById('edit-status').value = status;
+      document.getElementById('editModal').classList.remove('hidden');
+    }
+    function closeModal() {
+      document.getElementById('editModal').classList.add('hidden');
+    }
+
+    // Envio via AJAX
+    document.getElementById('editForm').onsubmit = function(e) {
+      e.preventDefault();
+      fetch('./actions/update.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          id: document.getElementById('edit-id').value,
+          titulo: document.getElementById('edit-titulo').value,
+          status: document.getElementById('edit-status').value
+        })
+      }).then(res => {
+        if(res.ok) {
+          location.reload();
+        }
+      });
+    };
   </script>
 
   <!-- Script JS para funcionalidades do Kanban -->
