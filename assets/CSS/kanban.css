@@ -1,5 +1,5 @@
 /* Importa a fonte 'Poppins' do Google Fonts com variações de peso para uso tipográfico */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap");
 
 /* === Reset universal para garantir consistência entre navegadores === */
 * {
@@ -11,10 +11,13 @@
 /* === Estilização global do corpo da página === */
 body {
   font-family: "Poppins", sans-serif; /* Aplica a fonte principal em todo o site */
-  background: #f4f4f4; /* Define cor de fundo neutra */
   margin: 0; /* Remove margem externa */
   padding: 20px; /* Adiciona espaçamento interno */
-  background-color: aqua; /* Sobrescreve a cor de fundo anterior com aqua (possível teste visual) */
+  background-color: rgb(
+    92,
+    166,
+    201
+  ); /* Sobrescreve a cor de fundo anterior com aqua (possível teste visual) */
 }
 
 /* === Estilo do título principal === */
@@ -32,7 +35,8 @@ h1 {
 }
 
 /* === Campos de entrada e seleção do formulário === */
-.add-form input, .add-form select {
+.add-form input,
+.add-form select {
   padding: 8px; /* Espaçamento interno para conforto visual */
   font-size: 14px; /* Tamanho de fonte legível */
 }
@@ -59,7 +63,7 @@ h1 {
   padding: 10px; /* Espaçamento interno */
   border-radius: 8px; /* Cantos arredondados para suavidade visual */
   width: 30%; /* Cada coluna ocupa 30% da largura disponível */
-  box-shadow: 0 0 5px rgba(0,0,0,0.1); /* Sombra leve para profundidade */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra leve para profundidade */
 }
 
 /* === Título de cada coluna do Kanban === */
@@ -95,7 +99,9 @@ h1 {
 /* === Estilo aplicado à tarefa enquanto está sendo arrastada === */
 .task.dragging {
   opacity: 0.5; /* Reduz opacidade para indicar movimento */
-  transform: scale(1.05); /* Aumenta ligeiramente o tamanho para efeito visual */
+  transform: scale(
+    1.05
+  ); /* Aumenta ligeiramente o tamanho para efeito visual */
 }
 
 /* === Estilo de notificação tipo "toast" (mensagem temporária) === */
@@ -129,13 +135,265 @@ h1 {
 }
 
 /* === Cores de destaque lateral por categoria de tarefa === */
-.task[data-categoria="trabalho"] { border-left: 4px solid #007bff; }   /* Azul para trabalho */
-.task[data-categoria="pessoal"] { border-left: 4px solid #28a745; }   /* Verde para pessoal */
-.task[data-categoria="estudos"] { border-left: 4px solid #ffc107; }   /* Amarelo para estudos */
+.task[data-categoria="trabalho"] {
+  border-left: 4px solid #007bff;
+} /* Azul para trabalho */
+.task[data-categoria="pessoal"] {
+  border-left: 4px solid #28a745;
+} /* Verde para pessoal */
+.task[data-categoria="estudos"] {
+  border-left: 4px solid #ffc107;
+} /* Amarelo para estudos */
 
 /* === Estilo para o card que exibe tarefas futuras === */
 .card-future {
   background-color: #28a745; /* Verde vibrante para chamar atenção */
+}
+
+/* Estilização dos inputs e selects */
+.add-form input[type="text"],
+.add-form input[type="date"],
+.add-form input[type="time"],
+.add-form select,
+.add-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 5px 0;
+  width: 100%;
+  font-size: 1em;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.add-form input:focus,
+.add-form select:focus,
+.add-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Botão principal */
+.add-form button,
+form button,
+.link-futuras {
+  background: linear-gradient(90deg, #007bff 60%, #00c6ff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.add-form button:hover,
+form button:hover,
+.link-futuras:hover {
+  background: linear-gradient(90deg, #0056b3 60%, #0096c7 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* Estilo para o formulário de filtro */
+form select {
+  width: auto;
+  display: inline-block;
+  margin-right: 8px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 5px 0;
+  font-size: 1em;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+/* Espaçamento entre formulários */
+.add-form,
+form {
+  margin-bottom: 18px;
+}
+
+/* Card de tarefas futuras */
+.card-future {
+  background: linear-gradient(90deg, #e0ffe7 60%, #b2f7ef 100%);
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  padding: 32px 24px;
+  margin: 32px auto;
+  max-width: 600px;
+  border-left: 6px solid #28a745;
+  animation: fadeIn 0.7s;
+}
+
+/* Lista de tarefas futuras */
+.lista-futuras {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lista-futuras li {
+  background: #fff;
+  border-radius: 8px;
+  margin-bottom: 18px;
+  padding: 18px 16px;
+  box-shadow: 0 1px 6px rgba(40, 167, 69, 0.07);
+  border-left: 4px solid #28a745;
+  transition: transform 0.15s;
+}
+
+.lista-futuras li:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(40, 167, 69, 0.13);
+}
+
+.lista-futuras strong {
+  color: #28a745;
+  font-size: 1.15em;
+}
+
+.lista-futuras em {
+  color: #007bff;
+  font-size: 0.95em;
+}
+
+.lista-futuras span {
+  color: #555;
+  font-size: 0.95em;
+}
+
+.lista-futuras p {
+  margin-top: 8px;
+  color: #333;
+  font-size: 1em;
+}
+
+/* Link de voltar */
+a[href="../index.php"] {
+  display: inline-block;
+  margin: 32px auto 0 auto;
+  background: linear-gradient(90deg, #007bff 60%, #00c6ff 100%);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  transition: background 0.2s, transform 0.1s;
+}
+
+a[href="../index.php"]:hover {
+  background: linear-gradient(90deg, #0056b3 60%, #0096c7 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* Animação de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navbar personalizada */
+.navbar {
+  background: linear-gradient(90deg, #007bff 60%, #00c6ff 100%);
+  padding: 0 24px;
+  border-radius: 10px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 60px;
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-size: 1.6em;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.navbar-brand:hover {
+  color: #e0e0e0 !important;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: #fff !important;
+  font-size: 1.1em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+  background: #0056b3;
+  color: #fff !important;
+}
+
+.navbar-toggler {
+  display: none; /* Esconde o botão de menu mobile por padrão */
+}
+
+.btn-editar {
+  background: linear-gradient(90deg, #ffc107 60%, #ffe082 100%);
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 16px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-right: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-editar:hover {
+  background: linear-gradient(90deg, #ffb300 60%, #ffd54f 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.btn-excluir {
+  background: linear-gradient(90deg, #ff5252 60%, #ffb3b3 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 16px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-right: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-excluir:hover {
+  background: linear-gradient(90deg, #c62828 60%, #ff8a80 100%);
+  transform: translateY(-2px) scale(1.04);
 }
 
 /* === Responsividade para telas médias (tablets) === */
@@ -163,6 +421,22 @@ h1 {
 
   .task {
     font-size: 14px; /* Reduz o tamanho da fonte para melhor adaptação */
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 12px;
+  }
+  .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+  }
+  .nav-link {
+    width: 100%;
+    text-align: left;
+    margin: 2px 0;
   }
 }
 

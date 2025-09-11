@@ -41,6 +41,10 @@ $tarefasFuturas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
               <!-- Exibe a descrição da tarefa, convertendo quebras de linha para <br> -->
               <p><?= nl2br(htmlspecialchars($task['descricao'])) ?></p>
+
+              <!-- Link para editar a tarefa futura -->
+              <a href="edit_task.php?id=<?= $task['id'] ?>" class="btn-editar">✏️ Editar</a>
+              <a href="delete_task.php?id=<?= $task['id'] ?>" class="btn-excluir" onclick="return confirm('Tem certeza que deseja excluir esta tarefa?')">🗑️ Excluir</a>
             </li>
           <?php endforeach; ?>
         </ul>

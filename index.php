@@ -51,6 +51,14 @@ foreach ($tasks as $task) {
 </head>
 <body>
 
+  <nav class="navbar">
+    <a class="navbar-brand" href="index.php">Planix</a>
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="logout.php">Sair</a></li>
+    </ul>
+  </nav>
+
+
   <h1>Meu Quadro de Tarefas</h1>
 
   <!-- Link para visualizar tarefas futuras -->
