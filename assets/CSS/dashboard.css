@@ -1,0 +1,82 @@
+/* Modo claro */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom right, #e6f0ff, #cce0ff);
+  color: #333;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Modo escuro */
+.dark-mode {
+  background: linear-gradient(to bottom right, #001f3f, #003366);
+  color: #e0e0e0;
+}
+
+/* Caixa central */
+.dashboard_container {
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 35px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.dark-mode .dashboard_container {
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 20px rgba(255,255,255,0.05);
+}
+
+/* Título */
+.dashboard_title {
+  font-size: 26px;
+  margin-bottom: 12px;
+  color: #0077cc;
+}
+
+.dark-mode .dashboard_title {
+  color: #66b2ff;
+}
+
+/* Texto */
+.dashboard_text {
+  font-size: 16px;
+  margin-bottom: 28px;
+}
+
+/* Botão de logout */
+.dashboard_logoutButton {
+  display: inline-block;
+  padding: 10px 22px;
+  background-color: #0077cc;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.dashboard_logoutButton:hover {
+  background-color: #005fa3;
+}
+
+/* Botão de modo escuro */
+#dashboard_toggleDarkMode {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #0077cc;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+#dashboard_toggleDarkMode:hover {
+  background-color: #005fa3;
+}

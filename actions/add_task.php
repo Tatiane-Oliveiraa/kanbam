@@ -1,4 +1,5 @@
 <?php
+session_start();
 // === Conexão com o banco de dados ===
 // Inclui o arquivo que estabelece a conexão com o banco usando PDO.
 // Esse arquivo deve conter as credenciais e a instância de conexão ($conn).
@@ -13,6 +14,8 @@ $hora = $_POST['hora'] ?? '';            // Hora prevista
 $status = $_POST['status'] ?? 'todo';    // Status inicial da tarefa (padrão: "todo")
 $categoria = $_POST['categoria'] ?? '';  // Categoria da tarefa (ex: trabalho, pessoal)
 $descricao = $_POST['descricao'] ?? '';  // Descrição detalhada da tarefa
+$usuario = $_SESSION['usuario_id'] ?? null; //Pega o usuário logado na sessão
+
 // === Verificação de duplicidade ===
 // Antes de inserir, verifica se já existe uma tarefa com o mesmo título.
 // Isso evita que tarefas duplicadas sejam criadas acidentalmente.
@@ -33,11 +36,11 @@ $exists = $stmtCheck->fetchColumn();                             // Retorna o n�
 // Se não houver duplicidade, insere os dados no banco de dados.
 // Utiliza uma query preparada com parâmetros posicionais (?) para segurança.
 
-$sql = "INSERT INTO tasks (titulo, data, hora, status, categoria, descricao)
-        VALUES (?, ?, ?, ?, ?, ?)"; // Define os campos e os valores a serem inseridos
+$sql = "INSERT INTO tasks (titulo, data, hora, status, categoria, descricao, usuario)
+        VALUES (?, ?, ?, ?, ?, ?, ?)"; // Define os campos e os valores a serem inseridos
 
 $stmt = $conn->prepare($sql); // Prepara a query para execução segura
-$stmt->execute([$titulo, $data, $hora, $status, $categoria, $descricao]); // Executa passando os valores em ordem
+$stmt->execute([$titulo, $data, $hora, $status, $categoria, $descricao, $usuario]); // Executa passando os valores em ordem
 // === Redirecionamento após inserção ===
 // Após inserir a tarefa com sucesso, redireciona o usuário para a página principal.
 // Isso evita que o formulário seja reenviado ao atualizar a página.

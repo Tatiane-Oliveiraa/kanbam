@@ -1,0 +1,182 @@
+/* Reset básico */
+*, ::before, ::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #007bff, #6fb1fc);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Botão de modo escuro */
+#cadastro_toggleDarkMode {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 1000;
+}
+
+#cadastro_toggleDarkMode:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Container central */
+.cadastro_container {
+  width: 100%;
+  max-width: 500px;
+  background-color: #fff;
+  padding: 50px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Título */
+.cadastro_title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Campos do formulário */
+form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+  font-size: 15px;
+}
+
+form input {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 0 14px;
+  margin-bottom: 24px;
+  font-size: 16px;
+}
+
+/* Botão de registro */
+form button {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* Link para login */
+.cadastro_loginLink {
+  margin-top: 30px;
+}
+
+.cadastro_loginText {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.cadastro_loginButton {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cadastro_loginButton:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Mensagem de sucesso */
+.mensagem-sucesso {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Modo escuro */
+body.dark-mode {
+  background: linear-gradient(135deg, #0d1117, #1f2a38);
+  color: #f0f0f0;
+}
+
+body.dark-mode .cadastro_container {
+  background-color: #161b22;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode form label,
+body.dark-mode .cadastro_title,
+body.dark-mode .cadastro_loginText {
+  color: #f0f0f0;
+}
+
+body.dark-mode form input {
+  background-color: #0d1117;
+  color: #f0f0f0;
+  border: 1px solid #3b82f6;
+}
+
+body.dark-mode form button,
+body.dark-mode .cadastro_loginButton {
+  background-color: #4f9cf9;
+}
+
+body.dark-mode form button:hover,
+body.dark-mode .cadastro_loginButton:hover {
+  background-color: #3b82f6;
+}
+
+body.dark-mode .mensagem-sucesso {
+  background-color: #1e2a1e;
+  color: #a6f3a6;
+  border: 1px solid #3c6f3c;
+}

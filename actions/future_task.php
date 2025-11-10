@@ -1,9 +1,11 @@
 <?php
+session_start();
+$usuario = $_SESSION['usuario_id'];
 // Inclui o arquivo de conexão com o banco de dados
 include '../database/conn.php'; // Garante que a variável $conn esteja disponível para uso
 
 // Prepara uma consulta SQL para buscar todas as tarefas cuja data seja maior que a data atual
-$stmt = $conn->prepare("SELECT * FROM tasks WHERE data > CURDATE() ORDER BY data ASC");
+$stmt = $conn->prepare("SELECT * FROM tasks WHERE usuario=$usuario AND data > CURDATE() ORDER BY data ASC");
 
 // Executa a consulta no banco
 $stmt->execute();

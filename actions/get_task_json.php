@@ -1,10 +1,11 @@
 <?php
+session_start();
+$usuario = $_SESSION['usuario_id'];
 // Inclui o arquivo de conexão com o banco de dados
 include '../database/conn.php';
 
 // Executa uma consulta SQL para selecionar todos os registros da tabela 'tasks'
-$stmt = $conn->query("SELECT * FROM tasks");
-
+$stmt = $conn->query("SELECT * FROM tasks WHERE usuario = $usuario");
 // Recupera todos os resultados da consulta como um array associativo
 $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -16,7 +17,9 @@ foreach ($tasks as $task) {
   // Adiciona um novo evento ao array, formatando os dados conforme necessário
   $eventos[] = [
     'id' => $task['id'],                         // ID da tarefa
+    'desc' => $task['descricao'],              // Descrição da tarefa
     'title' => $task['titulo'],                  // Título da tarefa
+    'status' => $task['status'],                // Status da tarefa
     'start' => $task['data'] . 'T' . $task['hora'] // Combina data e hora no formato ISO 8601
   ];
 }

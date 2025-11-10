@@ -1,0 +1,306 @@
+*, ::after, ::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #007bff, #6fb1fc);
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login_toggleDarkMode {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 1000;
+}
+
+#login_toggleDarkMode:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.login_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login_box {
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login_title {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.login_box label {
+  font-size: 16px;
+  font-weight: 500;
+  align-self: flex-start;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.login_box input {
+  width: 100%;
+  height: 50px;
+  border-radius: 8px;
+  border: 1px solid #007bff;
+  padding: 0 16px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+}
+
+.login_box button {
+  width: 100%;
+  max-width: 300px;
+  height: 48px;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.login_box button:hover {
+  background-color: #0056b3;
+}
+
+.login_cadastroLink {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.login_cadastroText {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.login_cadastroButton {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.login_cadastroButton:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Dark mode */
+body.dark-mode {
+  background: linear-gradient(135deg, #0d1117, #1f2a38);
+  color: #f0f0f0;
+}
+
+body.dark-mode .login_box {
+  background-color: #161b22;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .login_title,
+body.dark-mode .login_box label,
+body.dark-mode .login_cadastroText {
+  color: #f0f0f0;
+}
+
+body.dark-mode .login_box input {
+  background-color: #0d1117;
+  color: #f0f0f0;
+  border: 1px solid #3b82f6;
+}
+
+body.dark-mode .login_box button,
+body.dark-mode .login_cadastroButton {
+  background-color: #4f9cf9;
+  color: #fff;
+}
+
+body.dark-mode .login_box button:hover,
+body.dark-mode .login_cadastroButton:hover {
+  background-color: #3b82f6;
+}
+.mensagem-sucesso {
+  background-color: #e6f0ff;
+  color: #007bff;
+  border: 1px solid #007bff;
+  padding: 14px 24px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  margin: 20px auto;
+  max-width: 500px;
+  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2);
+  font-family: 'Poppins', sans-serif;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.mensagem-erro {
+  background-color: #fff0f0;
+  color: #d10000;
+  border: 1px solid #d10000;
+  padding: 14px 24px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  margin: 20px auto;
+  max-width: 500px;
+  box-shadow: 0 6px 12px rgba(209, 0, 0, 0.2);
+  font-family: 'Poppins', sans-serif;
+  animation: shake 0.4s ease-in-out;
+}
+
+/* Dark mode */
+body.dark-mode .mensagem-sucesso {
+  background-color: #1f2a38;
+  color: #66b2ff;
+  border: 1px solid #66b2ff;
+  box-shadow: 0 6px 12px rgba(102, 178, 255, 0.2);
+}
+
+body.dark-mode .mensagem-erro {
+  background-color: #2a1f1f;
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+  box-shadow: 0 6px 12px rgba(255, 107, 107, 0.2);
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+}
+
+/*modo escuro*/
+:root {
+  --bg-color: #f5f5f5;
+  --text-color: #222;
+  --card-bg: #fff;
+  --accent-color: #0078d4;
+  --transition-speed: 0.3s;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+/* botao pra alternar */
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: var(--card-bg);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.4s ease, background-color var(--transition-speed);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.theme-toggle:hover {
+  transform: rotate(20deg) scale(1.1);
+}
+
+.theme-toggle svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.6s ease;
+}
+
+/* tema escuro */
+body.dark-mode {
+  --bg-color: #1e1e1e;
+  --text-color: #e0e0e0;
+  --card-bg: #2a2a2a;
+  --accent-color: #ffb400;
+}
+
+body.dark-mode .theme-toggle {
+  background: var(--card-bg);
+}
+
+/* icone que gira qnd troca*/
+#theme-icon {
+  transition: transform 0.6s ease;
+}
+
+.rotate {
+  transform: rotate(360deg);
+}

@@ -43,6 +43,15 @@ $tasks = $stmt->fetch(PDO::FETCH_ASSOC);
   <!-- Importa o CSS para estilizar o formulário -->
   <link rel="stylesheet" href="../assets/CSS/kanban.css">
 </head>
+
+<header>
+  <div class="logo">Logo</div>
+  <nav>
+    <a href="actions/paginainicial.php">Login</a>
+    <a href="actions/cadastro.php">Cadastre-se</a>
+    <button id="dashboard_toggleDarkMode">🌙 Alterar Modo</button>
+  </nav>
+</header>
 <body>
   <h1>Editar Tarefa</h1>
 

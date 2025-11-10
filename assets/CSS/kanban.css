@@ -17,7 +17,9 @@ body {
     92,
     166,
     201
-  ); /* Sobrescreve a cor de fundo anterior com aqua (possível teste visual) */
+  );/* Sobrescreve a cor de fundo anterior com aqua (possível teste visual) */
+  
+
 }
 
 /* === Estilo do título principal === */
@@ -539,4 +541,22 @@ a[href="../index.php"]:hover {
 .edit-form button:hover {
   background: linear-gradient(90deg, #0056b3 60%, #0096c7 100%);
   transform: translateY(-2px) scale(1.04);
+}
+
+#dashboard_toggleDarkMode {
+  all: unset;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #0077cc !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 10px 14px !important;
+  border-radius: 50px !important;
+  cursor: pointer;
+  font-size: 16px !important;
+}
+
+#dashboard_toggleDarkMode:hover {
+  background-color: #005fa3 !important;
 }

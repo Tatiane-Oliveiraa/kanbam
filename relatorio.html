@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Relatório de Tarefas</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <script src="./assets/JAVASCRIPT/relatorio.js" defer></script>
+    <link rel="stylesheet" href="../assets/CSS/dashboard.css" />
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        href="relatorio.html"
+        style="
+          background-color: #007bff;
+          color: white;
+          padding: 8px 12px;
+          border-radius: 5px;
+          text-decoration: none;
+        "
+      >
+        📄 Relatório
+      </a>
+    </li>
+  </head>
+
+  <header>
+    <div class="logo">Logo</div>
+    <nav>
+      <a href="actions/paginainicial.php">Login</a>
+      <a href="actions/cadastro.php">Cadastre-se</a>
+    </nav>
+  </header>
+  <body
+    style="
+      background: linear-gradient(to bottom, #cce6ff, #e6f2ff);
+      font-family: Arial, sans-serif;
+    "
+  >
+    <div
+      style="
+        max-width: 900px;
+        margin: 50px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <h1 style="text-align: center">Relatório de Tarefas</h1>
+      <div>
+        <select id="statusFiltro">
+          <option value="">Todos</option>
+          <option value="todo">A Fazer</option>
+          <option value="in-progress">Em Progresso</option>
+          <option value="done">Concluído</option>
+        </select>
+        <button onclick="buscarRelatorio()">Buscar</button>
+        <button onclick="gerarPDF()">Gerar PDF</button>
+      </div>
+      <div id="resultado" style="margin-top: 20px"></div>
+    </div>
+  </body>
+</html>
