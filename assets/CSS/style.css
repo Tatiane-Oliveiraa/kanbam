@@ -1,4 +1,6 @@
-*, ::after, ::before {
+*,
+::after,
+::before {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -6,11 +8,34 @@
 
 body {
   background: linear-gradient(135deg, #007bff, #6fb1fc);
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+header {
+  display: flex;
+  background-color: #3b82f6;
+  align-items: center;
+  justify-content: space-between; /* separa logo e botões */
+  padding: 20px 60px;
+}
+
+header nav {
+  display: flex;
+  gap: 12px; /* espaço entre os botões */
+}
+
+header nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: 0.3s;
+  background-color: rgb(52, 71, 238);
 }
 
 #login_toggleDarkMode {
@@ -175,7 +200,7 @@ body.dark-mode .login_cadastroButton:hover {
   margin: 20px auto;
   max-width: 500px;
   box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2);
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   animation: fadeIn 0.4s ease-in-out;
 }
 
@@ -190,7 +215,7 @@ body.dark-mode .login_cadastroButton:hover {
   margin: 20px auto;
   max-width: 500px;
   box-shadow: 0 6px 12px rgba(209, 0, 0, 0.2);
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   animation: shake 0.4s ease-in-out;
 }
 
@@ -211,38 +236,55 @@ body.dark-mode .mensagem-erro {
 
 /* Animações */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  75% { transform: translateX(-5px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
+html,
+body {
+  height: 100%;
+  margin: 0;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 main {
-    flex: 1;
+  flex: 1;
 }
 
 footer {
-    background: #222;
-    color: #fff;
-    text-align: center;
-    padding: 15px 0;
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
 }
 
 /*modo escuro*/
@@ -257,7 +299,8 @@ footer {
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+  transition: background-color var(--transition-speed) ease,
+    color var(--transition-speed) ease;
 }
 
 /* botao pra alternar */
@@ -271,7 +314,7 @@ body {
   padding: 10px;
   cursor: pointer;
   transition: transform 0.4s ease, background-color var(--transition-speed);
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .theme-toggle:hover {

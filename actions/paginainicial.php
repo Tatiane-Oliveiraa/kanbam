@@ -14,16 +14,18 @@ if (isset($_SESSION['usuario_id'])) {
   <link rel="stylesheet" href="../assets/CSS/style.css">
 </head>
 
+<header>
+  <div class="logo">Logo</div>
+  <nav>
+    <a href="actions/paginainicial.php">Login</a>
+    <a href="actions/cadastro.php">Cadastre-se</a>
+    <button id="dashboard_toggleDarkMode">🌙 Alterar Modo</button>
+  </nav>
+</header>
+
 <body>
 
-  <header>
-    <div class="logo">Logo</div>
-    <nav>
-      <a href="actions/paginainicial.php">Login</a>
-      <a href="actions/cadastro.php">Cadastre-se</a>
-      <button id="dashboard_toggleDarkMode">🌙 Alterar Modo</button>
-    </nav>
-  </header>
+
 
   <div class="login_container">
 

@@ -11,21 +11,64 @@
       box-sizing: border-box;
     }
 
+     /* Botão de modo escuro */
+    #cadastro_toggleDarkMode {
+      top: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      z-index: 1000;
+    }
+
+    #cadastro_toggleDarkMode:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    /* Modo escuro */
+    body.dark-mode {
+      background: linear-gradient(135deg, #080a0e, #1f2a38);
+      color: #f0f0f0;
+    }
+
+    header.dark-mode {
+      background-color: #080a0e;
+      color: #f0f0f0;
+    }
+
+    footer.dark-mode {
+      background-color: #080a0e;
+      color: #f0f0f0;
+    }
+
+
     body {
       font-family: 'Inter', sans-serif;
       background: #fff;
       color: #1a1a1a;
     }
 
-   header {
+    .logo {
+      width: 150px;
+      
+    }
+
+    header {
       display: flex;
-      background-color: #3b82f6;
+      background-color: #1c1c1c;
       align-items: center;
       justify-content: space-between; /* separa logo e botões */
       padding: 20px 60px;
     }
 
-    
     header nav {
       display: flex;
       gap: 12px; /* espaço entre os botões */
@@ -34,12 +77,30 @@
     header nav a {
       text-decoration: none;
       color: #fff;
-      font-weight: 500;
-      padding: 10px 20px;
+      font-weight: bold;
+      padding: 10px 16px;
       border-radius: 8px;
+      border: none;
       transition: 0.3s;
-      background-color: rgb(52, 71, 238);
+      background-color: #007bff;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      z-index: 1000;
     }
+
+    header nav a:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+      
 
 
     .hero {
@@ -124,14 +185,15 @@
       border-radius: 20px;
     }
 
+   
     footer {
-      position: fixed;
-      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       width: 100%;
       background-color: #3b82f6;
       color: #fff;
-      text-align: center;
-      padding: 20px;
+      padding: 20px 60px;
     }
 
   </style>
@@ -139,10 +201,12 @@
 <body>
 
     <header>
-      <div class="logo">Logo</div>
+      <div class="logo">
+        <img src="logo.svg" alt="logo"></div>
       <nav>
         <a href="actions/paginainicial.php">Login</a>
         <a href="actions/cadastro.php">Cadastre-se</a>
+        <button id="cadastro_toggleDarkMode">🌙 Alterar Modo</button>
       </nav>
     </header>
 
@@ -168,14 +232,14 @@
   </section>
 
   <!--codigo apenas do footer. para caso queira mudar atualiza em todas as paginas e n precisa ficar colocando em uma por uma-->
-  <footer style="background:#126a97; color:#fff; text-align:center; padding:20px 0; position:fixed; bottom:0; left:0; width:100%;">
+  <footer>
     <p>&copy; 2025 -  Projeto Planix | Todos os direitos reservados.</p>
 
     <div style="margin:15px 0;">
         <a href="https://www.instagram.com/jao_lucas_s" target="_blank" style="margin:0 10px; text-decoration:none; color:#fff;">
             <img src="https://media.discordapp.net/attachments/1263445013745107048/1424426255536619641/2048px-Instagram_icon.png?ex=68e3e7d3&is=68e29653&hm=ae71936848961060621c4ea5812f8e37831faf4959c101052ca634a5256d5d2b&=&format=webp&quality=lossless&width=960&height=960" alt="Instagram" width="24" style="vertical-align:middle; margin-right:5px;">João
         </a>
-            <a href="https://www.instagram.com/tati.cristina01" target="_blank" style="margin:0 10px; text-decoration:none; color:#fff;">
+            <a href="https://www.instagram.com/devtatianeoliveira/?next=%2F" target="_blank" style="margin:0 10px; text-decoration:none; color:#fff;">
             <img src="https://media.discordapp.net/attachments/1263445013745107048/1424426255536619641/2048px-Instagram_icon.png?ex=68e3e7d3&is=68e29653&hm=ae71936848961060621c4ea5812f8e37831faf4959c101052ca634a5256d5d2b&=&format=webp&quality=lossless&width=960&height=960" alt="Instagram" width="24" style="vertical-align:middle; margin-right:5px;">Tatiane
 
         </a>
@@ -185,5 +249,24 @@
         
     </div>
   </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById('cadastro_toggleDarkMode');
+      const body = document.body;
+
+      if (localStorage.getItem('modo') === 'escuro') {
+        body.classList.add('dark-mode');
+        toggle.textContent = '☀️ Alterar Modo';
+      }
+
+      toggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const modoAtual = body.classList.contains('dark-mode') ? 'escuro' : 'claro';
+        localStorage.setItem('modo', modoAtual);
+        toggle.textContent = modoAtual === 'escuro' ? '☀️ Alterar Modo' : '🌙 Alterar Modo';
+      });
+    });
+  </script>
 </body>
 </html>
