@@ -39,14 +39,28 @@
       color: #f0f0f0;
     }
 
-    header.dark-mode {
-      background-color: #080a0e;
+    body.dark-mode header {
+      background: linear-gradient(135deg, #080a0e, #1f2a38);
       color: #f0f0f0;
     }
 
-    footer.dark-mode {
-      background-color: #080a0e;
+    body.dark-mode .hero-text p {
       color: #f0f0f0;
+  
+    }
+
+    body.dark-mode .hero-image {
+      filter: invert();
+
+    }
+
+    body.dark-mode footer {
+    background: linear-gradient(135deg, #080a0e, #1f2a38);
+      color: #f0f0f0;
+    }
+
+    body.dark-mode .logo img {
+      filter: invert(1);
     }
 
 
@@ -55,15 +69,27 @@
       background: #fff;
       color: #1a1a1a;
     }
-
+    
     .logo {
       width: 150px;
-      
+      height: 100px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+
+    .logo img {
+      width: 80%;
+      transition: transform 0.3s;
+    }
+
+    .logo img:hover {
+      transform: scale(1.1);
     }
 
     header {
       display: flex;
-      background-color: #1c1c1c;
+      background-color: #0056b3;
       align-items: center;
       justify-content: space-between; /* separa logo e botões */
       padding: 20px 60px;
@@ -191,7 +217,7 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      background-color: #3b82f6;
+      background-color: #0056b3;
       color: #fff;
       padding: 20px 60px;
     }
@@ -202,7 +228,7 @@
 
     <header>
       <div class="logo">
-        <img src="logo.svg" alt="logo"></div>
+        <img src="logo.png.png" alt="logo"></div>
       <nav>
         <a href="actions/paginainicial.php">Login</a>
         <a href="actions/cadastro.php">Cadastre-se</a>
