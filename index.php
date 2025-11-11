@@ -46,17 +46,16 @@ foreach ($tasks as $task) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kanban com Calendário</title>
+  <title>Kanbam com Calendário</title>
   <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js'></script>
   <link rel="stylesheet" href="./assets/CSS/kanban.css">
 </head>
 
 <header>
-  <div class="logo">Logo</div>
+  <div class="logo">
+        <img src="logo.png.png" alt="logo"></div>
   <nav>
-    <a href="actions/paginainicial.php">Login</a>
-    <a href="actions/cadastro.php">Cadastre-se</a>
     <button id="dashboard_toggleDarkMode">🌙 Alterar Modo</button>
   </nav>
 </header>
