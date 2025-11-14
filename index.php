@@ -44,6 +44,7 @@ foreach ($tasks as $task) {
 <html lang="pt-br">
 
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanban com Calendário</title>
@@ -52,6 +53,24 @@ foreach ($tasks as $task) {
     <link rel="stylesheet" href="./assets/CSS/kanban.css">
 </head>
 
+=======
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanbam com Calendário</title>
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js'></script>
+  <link rel="stylesheet" href="./assets/CSS/kanban.css">
+</head>
+
+<header>
+  <div class="logo">
+        <img src="logo.png.png" alt="logo"></div>
+  <nav>
+    <button id="dashboard_toggleDarkMode">🌙 Alterar Modo</button>
+  </nav>
+</header>
+
+>>>>>>> a767bb4748d0b96f42afb96f1aba6b612a424cd5
 
 <body>
     <nav class="navbar">
