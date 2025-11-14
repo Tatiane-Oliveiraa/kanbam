@@ -44,76 +44,67 @@ foreach ($tasks as $task) {
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kanban com Calendário</title>
-  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
-  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js'></script>
-  <link rel="stylesheet" href="./assets/CSS/kanban.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban com Calendário</title>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js'></script>
+    <link rel="stylesheet" href="./assets/CSS/kanban.css">
 </head>
-
-<header>
-  <div class="logo">Logo</div>
-  <nav>
-    <a href="actions/paginainicial.php">Login</a>
-    <a href="actions/cadastro.php">Cadastre-se</a>
-    <button id="dashboard_toggleDarkMode">🌙 Alterar Modo</button>
-  </nav>
-</header>
 
 
 <body>
-  
-  <nav class="navbar">
-    <a class="navbar-brand" href="index.php">Planix</a>
-    <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" href="quiz.php">Quiz</a></li>
-      <li class="nav-item"><a class="nav-link" href="./actions/logout.php">Sair</a></li>
-      <li class="nav-item">
-        <a class="nav-link" href="relatorio.html" style="background-color: #007bff; color: white; padding: 8px 12px; border-radius: 5px; text-decoration: none;">
-          📄 Relatório
-        </a>
-      </li>
-    </ul>
-  </nav>
+    <nav class="navbar">
+        <a class="navbar-brand" href="index.php">Planix</a>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="quiz.php">Quiz</a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="./relatorio.html">📄 Relatório </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./actions/logout.php">Sair</a>
+
+            </li>
+        </ul>
+    </nav>
 
 
-  <h1>Meu Quadro de Tarefas</h1>
+    <h1>Meu Quadro de Tarefas</h1>
 
-  <div>
-    <a href="./actions/future_task.php" class="link-futuras">🔮 Ver Tarefas Futuras</a>
-  </div>
+    <div>
+        <a href="./actions/future_task.php" class="link-futuras">🔮 Ver Tarefas Futuras</a>
+    </div>
 
-  <form class="add-form" action="./actions/add_task.php" method="POST">
-    <input type="text" name="titulo" placeholder="Nova tarefa..." required>
-    <input type="date" name="data">
-    <input type="time" name="hora">
-    <select name="status">
-      <option value="todo">A Fazer</option>
-      <option value="in-progress">Em Progresso</option>
-      <option value="done">Concluído</option>
-    </select>
-    <select name="categoria" class="data-categoria">
-      <option value="trabalho">Trabalho</option>
-      <option value="pessoal">Pessoal</option>
-      <option value="estudos">Estudos</option>
-    </select>
-    <textarea name="descricao" placeholder="Descrição da tarefa..."></textarea>
-    <button type="submit">Adicionar</button>
-  </form>
+    <form class="add-form" action="./actions/add_task.php" method="POST">
+        <input type="text" name="titulo" placeholder="Nova tarefa..." required>
+        <input type="date" name="data">
+        <input type="time" name="hora">
+        <select name="status">
+            <option value="todo">A Fazer</option>
+            <option value="in-progress">Em Progresso</option>
+            <option value="done">Concluído</option>
+        </select>
+        <select name="categoria" class="data-categoria">
+            <option value="trabalho">Trabalho</option>
+            <option value="pessoal">Pessoal</option>
+            <option value="estudos">Estudos</option>
+        </select>
+        <textarea name="descricao" placeholder="Descrição da tarefa..."></textarea>
+        <button type="submit">Adicionar</button>
+    </form>
 
-  <form method="GET" action="">
-    <select name="categoria">
-      <option value="">Todas</option>
-      <option value="trabalho">Trabalho</option>
-      <option value="pessoal">Pessoal</option>
-      <option value="estudos">Estudos</option>
-    </select>
-    <button type="submit">Filtrar</button>
-  </form>
+    <form method="GET" action="">
+        <select name="categoria">
+            <option value="">Todas</option>
+            <option value="trabalho">Trabalho</option>
+            <option value="pessoal">Pessoal</option>
+            <option value="estudos">Estudos</option>
+        </select>
+        <button type="submit">Filtrar</button>
+    </form>
 
-  <div class="kanban-board">
-    <?php
+    <div class="kanban-board">
+        <?php
     $colunas = [
       'todo' => ['A Fazer', $todo],
       'in-progress' => ['Em Progresso', $inProgress],
@@ -122,90 +113,94 @@ foreach ($tasks as $task) {
 
     foreach ($colunas as $id => [$titulo, $lista]):
     ?>
-      <div class="kanban-column" id="<?= $id ?>">
-        <h2><?= $titulo ?></h2>
-        <?php foreach ($lista as $task): ?>
-          <?php $futuro = ($task['data'] > date('Y-m-d')) ? 'true' : 'false'; ?>
-          <div class="task" draggable="true" data-id="<?= $task['id'] ?>" data-futuro="<?= $futuro ?>">
-            <strong><?= htmlspecialchars($task['titulo']) ?></strong>
-            <p class="categoria"><?= htmlspecialchars($task['categoria'] ?? '') ?></p>
-            <p class="descricao"><?= nl2br(htmlspecialchars($task['descricao'] ?? '')) ?></p>
-            <div class="actions">
-              <a href="#" onclick="openEditModal('<?= $task['id'] ?>','<?= htmlspecialchars($task['titulo'], ENT_QUOTES) ?>','<?= $task['status'] ?>'); return false;">✏️</a>
-              <a href="actions/delete_task.php?id=<?= $task['id'] ?>" onclick="return confirm('Excluir esta tarefa?')">🗑️</a>
+        <div class="kanban-column" id="<?= $id ?>">
+            <h2><?= $titulo ?></h2>
+            <?php foreach ($lista as $task): ?>
+            <?php $futuro = ($task['data'] > date('Y-m-d')) ? 'true' : 'false'; ?>
+            <div class="task" draggable="true" data-id="<?= $task['id'] ?>" data-futuro="<?= $futuro ?>">
+                <strong><?= htmlspecialchars($task['titulo']) ?></strong>
+                <p class="categoria"><?= htmlspecialchars($task['categoria'] ?? '') ?></p>
+                <p class="descricao"><?= nl2br(htmlspecialchars($task['descricao'] ?? '')) ?></p>
+                <div class="actions">
+                    <a href="#"
+                        onclick="openEditModal('<?= $task['id'] ?>','<?= htmlspecialchars($task['titulo'], ENT_QUOTES) ?>','<?= $task['status'] ?>'); return false;">✏️</a>
+                    <a href="actions/delete_task.php?id=<?= $task['id'] ?>"
+                        onclick="return confirm('Excluir esta tarefa?')">🗑️</a>
+                </div>
             </div>
-          </div>
+            <?php endforeach; ?>
+        </div>
         <?php endforeach; ?>
-      </div>
-    <?php endforeach; ?>
-  </div>
-
-  <div id='calendar'></div>
-
-  <div id="editModal" class="modal hidden">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <form id="editForm">
-        <input type="hidden" name="id" id="edit-id">
-        <input type="text" name="titulo" id="edit-titulo" required>
-        <select name="status" id="edit-status">
-          <option value="todo">A Fazer</option>
-          <option value="in-progress">Em Progresso</option>
-          <option value="done">Concluído</option>
-        </select>
-        <button type="submit">Salvar</button>
-      </form>
     </div>
-  </div>
 
-  <script>
+    <div id='calendar'></div>
+
+    <div id="editModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <form id="editForm">
+                <input type="hidden" name="id" id="edit-id">
+                <input type="text" name="titulo" id="edit-titulo" required>
+                <select name="status" id="edit-status">
+                    <option value="todo">A Fazer</option>
+                    <option value="in-progress">Em Progresso</option>
+                    <option value="done">Concluído</option>
+                </select>
+                <button type="submit">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
     document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar');
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        locale: 'pt-br',
-        events: './actions/get_tasks_json.php',
-        editable: false,
-        eventClick: function(info) {
-          alert('Tarefa: ' + info.event.title + '\nDescrição: ' + (info.event.extendedProps.description || 'Sem descrição'));
-        }
-      });
-      calendar.render();
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'pt-br',
+            events: './actions/get_tasks_json.php',
+            editable: false,
+            eventClick: function(info) {
+                alert('Tarefa: ' + info.event.title + '\nDescrição: ' + (info.event.extendedProps
+                    .description || 'Sem descrição'));
+            }
+        });
+        calendar.render();
     });
 
     function openEditModal(id, titulo, status) {
-      document.getElementById('edit-id').value = id;
-      document.getElementById('edit-titulo').value = titulo;
-      document.getElementById('edit-status').value = status;
-      document.getElementById('editModal').classList.remove('hidden');
+        document.getElementById('edit-id').value = id;
+        document.getElementById('edit-titulo').value = titulo;
+        document.getElementById('edit-status').value = status;
+        document.getElementById('editModal').classList.remove('hidden');
     }
 
     function closeModal() {
-      document.getElementById('editModal').classList.add('hidden');
+        document.getElementById('editModal').classList.add('hidden');
     }
 
     document.getElementById('editForm').onsubmit = function(e) {
-      e.preventDefault();
-      fetch('./actions/update.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          id: document.getElementById('edit-id').value,
-          titulo: document.getElementById('edit-titulo').value,
-          status: document.getElementById('edit-status').value
-        })
-      }).then(res => {
-        if (res.ok) {
-          location.reload();
-        }
-      });
+        e.preventDefault();
+        fetch('./actions/update_status.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: document.getElementById('edit-id').value,
+                titulo: document.getElementById('edit-titulo').value,
+                status: document.getElementById('edit-status').value
+            })
+        }).then(res => {
+            if (res.ok) {
+                location.reload();
+            }
+        });
     };
-  </script>
+    </script>
 
-  <script src="./assets/JAVASCRIPT/kanban.js"></script>
-  <?php include 'footer.php'; ?>
+    <script src="./assets/JAVASCRIPT/kanban.js"></script>
+    <div id="toast" class="toast hidden"></div>
+
 </body>
 
 </html>
