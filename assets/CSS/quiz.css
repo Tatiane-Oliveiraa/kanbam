@@ -1,5 +1,5 @@
 body {
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   background: linear-gradient(135deg, #e0e7ff 0%, #f4f4f4 100%);
   padding: 40px;
   min-height: 100vh;
@@ -60,10 +60,23 @@ input[type="radio"] {
 }
 
 @keyframes shakeX {
-  10%, 90% { transform: translateX(-2px); }
-  20%, 80% { transform: translateX(4px); }
-  30%, 50%, 70% { transform: translateX(-8px); }
-  40%, 60% { transform: translateX(8px); }
+  10%,
+  90% {
+    transform: translateX(-2px);
+  }
+  20%,
+  80% {
+    transform: translateX(4px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-8px);
+  }
+  40%,
+  60% {
+    transform: translateX(8px);
+  }
 }
 .animate__shakeX {
   animation: shakeX 0.5s;
@@ -119,4 +132,51 @@ button:active {
   .pergunta {
     font-size: 16px;
   }
+}
+
+/* Dark Mode for Quiz */
+html.dark-mode body {
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f0f0f 100%);
+}
+
+html.dark-mode h1 {
+  color: #e4e4e4;
+}
+
+html.dark-mode .quiz-container {
+  background: #2a2a2a;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+html.dark-mode .pergunta {
+  color: #d4d4d4;
+}
+
+html.dark-mode #tempo {
+  color: #ff6b6b;
+}
+
+html.dark-mode button {
+  background: #4f46e5;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
+}
+
+html.dark-mode button:hover {
+  background: #4338ca;
+}
+
+html.dark-mode .navbar {
+  background: linear-gradient(90deg, #1a5490 60%, #0088aa 100%) !important;
+}
+
+html.dark-mode .navbar-brand {
+  color: #e4e4e4 !important;
+}
+
+html.dark-mode .nav-link {
+  color: #e4e4e4 !important;
+}
+
+html.dark-mode .progress {
+  background-color: #333;
 }

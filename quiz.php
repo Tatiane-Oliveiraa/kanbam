@@ -3,63 +3,70 @@ include './database/conn.php';
 
 // Verifica se a conexão está OK
 if (!$conn) {
-    die("Erro na conexão.");
+  die("Erro na conexão.");
 }
 
 // Executa a consulta
 try {
-    $stmt = $conn->prepare("SELECT * FROM perguntas ORDER BY RAND() LIMIT 5");
-    $stmt->execute();
-    $perguntas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $stmt = $conn->prepare("SELECT * FROM perguntas ORDER BY RAND() LIMIT 5");
+  $stmt->execute();
+  $perguntas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    die("Erro na consulta: " . $e->getMessage());
+  die("Erro na consulta: " . $e->getMessage());
 }
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Quiz de Programação</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="./assets/CSS/quiz.css">
+  <link rel="stylesheet" href="./assets/CSS/kanban.css">
+  <script src="./assets/JAVASCRIPT/theme.js"></script>
   <script>
-  let tempo = 30;
-  let tempoTotal = tempo;
-  let timer = setInterval(() => {
-    tempo--;
-    document.getElementById("tempo").innerText = tempo + "s";
-    document.getElementById("barra-tempo").style.width = (tempo / tempoTotal * 100) + "%";
+    let tempo = 30;
+    let tempoTotal = tempo;
+    let timer = setInterval(() => {
+      tempo--;
+      document.getElementById("tempo").innerText = tempo + "s";
+      document.getElementById("barra-tempo").style.width = (tempo / tempoTotal * 100) + "%";
 
-    if (tempo <= 5 && tempo > 0) {
-      document.getElementById("tempo").classList.add("animate__shakeX");
-      if (typeof beep === "function") beep();
-    } else {
-      document.getElementById("tempo").classList.remove("animate__shakeX");
+      if (tempo <= 5 && tempo > 0) {
+        document.getElementById("tempo").classList.add("animate__shakeX");
+        if (typeof beep === "function") beep();
+      } else {
+        document.getElementById("tempo").classList.remove("animate__shakeX");
+      }
+
+      if (tempo <= 0) {
+        clearInterval(timer);
+        document.forms["quizForm"].submit();
+      }
+    }, 1000);
+
+    function beep() {
+      try {
+        const ctx = new(window.AudioContext || window.webkitAudioContext)();
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = "sine";
+        o.connect(g);
+        g.connect(ctx.destination);
+        o.frequency.value = 880;
+        g.gain.value = 0.1;
+        o.start();
+        setTimeout(() => {
+          o.stop();
+          ctx.close();
+        }, 100);
+      } catch (e) {}
     }
-
-    if (tempo <= 0) {
-      clearInterval(timer);
-      document.forms["quizForm"].submit();
-    }
-  }, 1000);
-
-  function beep() {
-    try {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const o = ctx.createOscillator();
-      const g = ctx.createGain();
-      o.type = "sine";
-      o.connect(g);
-      g.connect(ctx.destination);
-      o.frequency.value = 880;
-      g.gain.value = 0.1;
-      o.start();
-      setTimeout(() => { o.stop(); ctx.close(); }, 100);
-    } catch (e) {}
-  }
-</script>
+  </script>
 </head>
+
 <body class="bg-light">
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
@@ -72,6 +79,11 @@ try {
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="index.php">Início</a></li>
           <li class="nav-item"><a class="nav-link" href="ranking.php">Ranking</a></li>
+          <li class="nav-item">
+            <button id="themeToggleBtn" onclick="toggleDarkMode()" class="btn btn-sm"
+              style="background: linear-gradient(90deg, #007bff 60%, #00c6ff 100%); border: none; color: #fff; cursor: pointer; padding: 6px 12px; border-radius: 4px; font-size: 0.9em; font-weight: bold;">🌙
+              Escuro</button>
+          </li>
         </ul>
       </div>
     </div>
@@ -89,10 +101,12 @@ try {
         <div class='card mb-3'>
           <div class='card-body'>
             <h5 class='card-title'><?= htmlspecialchars($p['pergunta']) ?></h5>
-            <?php foreach (['a','b','c','d'] as $letra): ?>
+            <?php foreach (['a', 'b', 'c', 'd'] as $letra): ?>
               <div class='form-check'>
-                <input class='form-check-input' type='radio' name='resposta[<?= $p['id'] ?>]' value='<?= strtoupper($letra) ?>' id='<?= $p['id'] ?>_<?= $letra ?>'>
-                <label class='form-check-label' for='<?= $p['id'] ?>_<?= $letra ?>'><?= htmlspecialchars($p["alternativa_$letra"]) ?></label>
+                <input class='form-check-input' type='radio' name='resposta[<?= $p['id'] ?>]'
+                  value='<?= strtoupper($letra) ?>' id='<?= $p['id'] ?>_<?= $letra ?>'>
+                <label class='form-check-label'
+                  for='<?= $p['id'] ?>_<?= $letra ?>'><?= htmlspecialchars($p["alternativa_$letra"]) ?></label>
               </div>
             <?php endforeach; ?>
           </div>
@@ -108,4 +122,5 @@ try {
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
