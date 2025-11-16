@@ -339,6 +339,8 @@ foreach ($tasks as $task) {
 
     <script src="./assets/JAVASCRIPT/kanban.js"></script>
     <div id="toast" class="toast hidden"></div>
+    
+    <?php include "./footer.php"; ?>
 
 </body>
 
