@@ -21,18 +21,6 @@ if (isset($_SESSION['usuario_id'])) {
         box-sizing: border-box;
     }
 
-    
-
-    footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      background-color: #0056b3;
-      color: #fff;
-      padding: 20px 60px;
-    }
-
      /* Botão de modo escuro */
     #login_toggleDarkMode {
       top: 20px;
@@ -79,8 +67,6 @@ if (isset($_SESSION['usuario_id'])) {
 
 <body>
 
-
-
     <div class="login_container">
 
         <div class="login_box">
@@ -110,25 +96,6 @@ if (isset($_SESSION['usuario_id'])) {
         </div>
     </div>
 
-     <!--codigo apenas do footer. para caso queira mudar atualiza em todas as paginas e n precisa ficar colocando em uma por uma-->
-  <footer>
-    <p>&copy; 2025 -  Projeto Planixx | Todos os direitos reservados.</p>
-
-    <div style="margin:15px 0;">
-        <a href="https://www.instagram.com/jao_lucas_s" target="_blank" style="margin:0 10px; text-decoration:none; color:#fff;">
-            <img src="https://media.discordapp.net/attachments/1263445013745107048/1424426255536619641/2048px-Instagram_icon.png?ex=68e3e7d3&is=68e29653&hm=ae71936848961060621c4ea5812f8e37831faf4959c101052ca634a5256d5d2b&=&format=webp&quality=lossless&width=960&height=960" alt="Instagram" width="24" style="vertical-align:middle; margin-right:5px;">João
-        </a>
-            <a href="https://www.instagram.com/devtatianeoliveira/?next=%2F" target="_blank" style="margin:0 10px; text-decoration:none; color:#fff;">
-            <img src="https://media.discordapp.net/attachments/1263445013745107048/1424426255536619641/2048px-Instagram_icon.png?ex=68e3e7d3&is=68e29653&hm=ae71936848961060621c4ea5812f8e37831faf4959c101052ca634a5256d5d2b&=&format=webp&quality=lossless&width=960&height=960" alt="Instagram" width="24" style="vertical-align:middle; margin-right:5px;">Tatiane
-
-        </a>
-        <a href="https://www.instagram.com/cl4rot" target="_blank" style="margin:0 10px; text-decoration:none; color:#fff;">
-            <img src="https://media.discordapp.net/attachments/1263445013745107048/1424426255536619641/2048px-Instagram_icon.png?ex=68e3e7d3&is=68e29653&hm=ae71936848961060621c4ea5812f8e37831faf4959c101052ca634a5256d5d2b&=&format=webp&quality=lossless&width=960&height=960" alt="Instagram" width="24" style="vertical-align:middle; margin-right:5px;">Clara
-        </a>
-        
-    </div>
-  </footer>
-
     <script>
     const toggle = document.getElementById('login_toggleDarkMode');
     const body = document.body;
@@ -145,7 +112,13 @@ if (isset($_SESSION['usuario_id'])) {
         toggle.textContent = modoAtual === 'escuro' ? '☀️ Alterar Modo' : '🌙 Alterar Modo';
     });
     </script>
-    
+    </div>
+    <div class="page-content">
+  <!-- todo o conteúdo da página -->
+    </div>
+
+    <?php include "../footer.php"; ?>  
+
 </body>
 
 </html>
